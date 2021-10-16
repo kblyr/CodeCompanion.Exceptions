@@ -28,6 +28,8 @@ namespace CodeCompanion.Exceptions
         {
             if (AdditionalMessage is not null)
                 builder.AppendLine(AdditionalMessage);
+            else if (ExpectedType is not null)
+                builder.AppendLine($"Expecting an instance of type '{ExpectedType.Name}'");
         }
 
         protected override void SetErrorData(IDictionary<string, object?> errorData)
@@ -35,5 +37,30 @@ namespace CodeCompanion.Exceptions
             if (ExpectedType is not null)
                 errorData.Add(nameof(ExpectedType), ExpectedType.Name);
         }
+    }
+
+    public class DataRequiredException<TExpected> : CodeCompanionException
+    {
+        public string? AdditionalMessage { get; init; }
+
+        public DataRequiredException()
+        {
+        }
+
+        public DataRequiredException(string? message) : base(message)
+        {
+        }
+
+        public DataRequiredException(string? message, Exception? innerException) : base(message, innerException)
+        {
+        }
+
+        protected DataRequiredException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+
+        protected override void SetClientMessage(StringBuilder builder) => builder.AppendLine(AdditionalMessage ?? $"Expecting an instance of type '{typeof(TExpected).Name}'");
+
+        protected override void SetErrorData(IDictionary<string, object?> errorData) => errorData.Add("ExpectedType", typeof(TExpected).Name);
     }
 }
