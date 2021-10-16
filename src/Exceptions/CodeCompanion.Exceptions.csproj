@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Info -->
+    <PackageId>CodeCompanion.Exceptions</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>CodeCompanion.Exceptions</Company>
+    <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/kblyr/CodeCompanion.Exceptions</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
