@@ -1,14 +1,10 @@
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace CodeCompanion.Exceptions
 {
-    public class DataRequiredException : CodeCompanionException
+    public class DataRequiredException<TExpected> : Exception
     {
-        public Type? ExpectedType { get; init; }
-        public string? AdditionalMessage { get; init; }
-
-        public DataRequiredException()
+        public DataRequiredException() : base($"Expecting an instance of type '{typeof(TExpected).FullName}'")
         {
         }
 
@@ -23,44 +19,5 @@ namespace CodeCompanion.Exceptions
         protected DataRequiredException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
-
-        protected override void SetClientMessage(StringBuilder builder)
-        {
-            if (AdditionalMessage is not null)
-                builder.AppendLine(AdditionalMessage);
-            else if (ExpectedType is not null)
-                builder.AppendLine($"Expecting an instance of type '{ExpectedType.Name}'");
-        }
-
-        protected override void SetErrorData(IDictionary<string, object?> errorData)
-        {
-            if (ExpectedType is not null)
-                errorData.Add(nameof(ExpectedType), ExpectedType.Name);
-        }
-    }
-
-    public class DataRequiredException<TExpected> : CodeCompanionException
-    {
-        public string? AdditionalMessage { get; init; }
-
-        public DataRequiredException()
-        {
-        }
-
-        public DataRequiredException(string? message) : base(message)
-        {
-        }
-
-        public DataRequiredException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected DataRequiredException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        protected override void SetClientMessage(StringBuilder builder) => builder.AppendLine(AdditionalMessage ?? $"Expecting an instance of type '{typeof(TExpected).Name}'");
-
-        protected override void SetErrorData(IDictionary<string, object?> errorData) => errorData.Add("ExpectedType", typeof(TExpected).Name);
     }
 }
