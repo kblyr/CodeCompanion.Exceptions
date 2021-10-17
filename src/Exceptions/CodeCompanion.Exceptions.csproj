@@ -15,10 +15,7 @@
     <RepositoryUrl>https://github.com/kblyr/CodeCompanion.Exceptions</RepositoryUrl>
     <Description>CodeCompanion.Exceptions</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/kblyr/CodeCompanion.Exceptions/main/assets/logo.png</PackageIconUrl>
-    <PackageReleaseNotes>
-      * DataRequiredException - if 'AdditionalMessage' is null and 'ExpectedType' is not null, will append client message = "Expecting an instance of type '*EXPECTED_TYPE*'"
-      * DataRequiredException&lt;T&gt;
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/kblyr/CodeCompanion.Exceptions/releases/tag/v1.0.7</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
